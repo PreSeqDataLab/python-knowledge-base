@@ -40,7 +40,8 @@ export default defineConfig({
   title: 'Python 知识库',
   description: 'Python 基础、Web 开发、AI Agent 与 RAG、计算机必要基础四条主线',
   lang: 'zh-CN',
-  base: process.env.BASE_PATH || '/python-knowledge-base/',
+  // Custom domains report an empty base_path from configure-pages; keep it as root.
+  base: process.env.BASE_PATH ?? '/python-knowledge-base/',
   cleanUrls: false,
   srcExclude: ['_templates/**'],
   lastUpdated: true,

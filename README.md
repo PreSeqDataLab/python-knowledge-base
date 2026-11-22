@@ -73,12 +73,11 @@ npm run docs:preview
 - `actions/upload-pages-artifact@v5`
 - `actions/deploy-pages@v5`
 
-默认 Pages 地址为 `https://Preseqdatalab.github.io/python-knowledge-base/`。
+默认 Pages 地址为 `https://preseqdatalab.github.io/python-knowledge-base/`。
 
-自定义域名：
+只有以下路径变化会触发自动部署：`docs/**`、workflow 自身、`package.json`、`package-lock.json`。修改 `main.py` 等示例源码不会重建站点；需要时可在 Actions 页面手动 `Run workflow`。
 
-1. 在 `Settings → Pages → Custom domain` 填写域名；
-2. 新增 Actions Secret `CUSTOM_DOMAIN`，值为同一域名，用于让构建时 `BASE_PATH` 变为 `/`。
+构建时的 `BASE_PATH` 直接取 `actions/configure-pages` 输出的 `base_path`，项目页（`/python-knowledge-base`）和自定义域名（空路径）都能自动适配，不需要额外配置 Secret。使用自定义域名时，只需在 `Settings → Pages → Custom domain` 填写域名。
 
 仓库地址已在 `docs/.vitepress/config.mts` 中配置。
 
