@@ -35,18 +35,28 @@ function tokenizeCJK(input: string): string[] {
 }
 
 const repo = 'https://github.com/PreSeqDataLab/python-knowledge-base'
+const base = process.env.BASE_PATH || '/python-knowledge-base/'
 
 export default defineConfig({
   title: 'Python 知识库',
   description: 'Python 基础、Web 开发、AI Agent 与 RAG、计算机必要基础四条主线',
   lang: 'zh-CN',
-  base: process.env.BASE_PATH || '/python-knowledge-base/',
+  base,
   cleanUrls: false,
   srcExclude: ['_templates/**'],
   lastUpdated: true,
   head: [
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
-    ['meta', { name: 'theme-color', content: '#3451b2' }]
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: `${base}favicon.svg` }],
+    ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: `${base}apple-touch-icon.png` }],
+    ['link', { rel: 'manifest', href: `${base}site.webmanifest` }],
+    ['meta', { media: '(prefers-color-scheme: light)', name: 'theme-color', content: '#3451b2' }],
+    ['meta', { media: '(prefers-color-scheme: dark)', name: 'theme-color', content: '#1b1b1f' }],
+    ['meta', { name: 'mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
+    ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'default' }],
+    ['meta', { name: 'apple-mobile-web-app-title', content: 'Python 知识库' }],
+    ['meta', { name: 'application-name', content: 'Python 知识库' }]
   ],
   markdown: {
     lineNumbers: true
