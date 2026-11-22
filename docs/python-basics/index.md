@@ -2,15 +2,23 @@
 
 语言本身、运行环境与工程化能力是所有其他主线的底座。
 
+> 章节结构参考 [菜鸟教程 Python3 教程](https://www.runoob.com/python3/python3-tutorial.html)，正文为本项目原创整理，不逐字复制原站内容。
+
 | 层级 | 章节 | 完成标准 |
 | --- | --- | --- |
-| 入门 | [beginner.md](beginner.md) | 能安装环境、写脚本、处理基础数据 |
-| 进阶 | [intermediate.md](intermediate.md) | 能组织模块、写类、理解迭代与并发边界 |
-| 实战 | [practical.md](practical.md) | 能交付一个可维护的 CLI 小工具 |
+| 入门 | [beginner/index.md](beginner/index.md) | 能安装环境、写脚本、处理基础数据与容器 |
+| 进阶 | [intermediate/index.md](intermediate/index.md) | 能组织函数、模块、类，理解异常与标准库 |
+| 实战 | [practical/index.md](practical/index.md) | 能交付一个可维护的 CLI 小工具 |
 | 面试 | [interview.md](interview.md) | 能说清可变对象、GIL、装饰器等高频问题 |
+
+## 覆盖主题
+
+- 入门：环境、解释器和编辑器、基础语法、数据类型、运算符、字符串、列表/元组/字典/集合、条件与循环、推导式。
+- 进阶：函数、lambda、装饰器、迭代器与生成器、`with`、模块与 `__name__`、异常、面向对象、类型注解、标准库。
+- 实战：命令行参数、路径处理、文件读写、JSON、正则、日期时间、日志与可安装脚本。
 
 ## 进入下一主线的条件
 
 - 能独立创建虚拟环境并管理依赖。
-- 能读懂并修改包含类、生成器、上下文管理器的代码。
+- 能读懂并修改包含函数、类、生成器、上下文管理器的代码。
 - 能用 `argparse` 或 `pathlib` 写出可复用脚本。

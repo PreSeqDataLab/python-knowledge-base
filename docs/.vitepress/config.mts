@@ -50,6 +50,19 @@ export default defineConfig({
   markdown: {
     lineNumbers: true
   },
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 1000,
+        ignored: [
+          '**/node_modules/**',
+          '**/docs/.vitepress/dist/**',
+          '**/docs/.vitepress/cache/**'
+        ]
+      }
+    }
+  },
   themeConfig: {
     nav: [
       { text: '首页', link: '/' },
@@ -74,9 +87,51 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: '主线总览', link: '/python-basics/index' },
-          { text: '入门', link: '/python-basics/beginner' },
-          { text: '进阶', link: '/python-basics/intermediate' },
-          { text: '实战', link: '/python-basics/practical' },
+          {
+            text: '入门',
+            collapsed: true,
+            items: [
+              { text: '入门总览', link: '/python-basics/beginner/index' },
+              { text: '开始', link: '/python-basics/beginner/first-program' },
+              { text: '环境与解释器', link: '/python-basics/beginner/environment' },
+              { text: 'Anaconda / Miniconda', link: '/python-basics/beginner/conda' },
+              { text: 'uv 工具链', link: '/python-basics/beginner/uv' },
+              { text: 'Jupyter Notebook', link: '/python-basics/beginner/jupyter' },
+              { text: '基础语法', link: '/python-basics/beginner/syntax' },
+              { text: '数据类型与转换', link: '/python-basics/beginner/data-types' },
+              { text: '运算符', link: '/python-basics/beginner/operators' },
+              { text: '数字与字符串', link: '/python-basics/beginner/strings' },
+              { text: '常用容器', link: '/python-basics/beginner/containers' },
+              { text: '条件与循环', link: '/python-basics/beginner/control-flow' },
+              { text: '推导式', link: '/python-basics/beginner/comprehension' },
+              { text: '输入输出与文件', link: '/python-basics/beginner/io-files' }
+            ]
+          },
+          {
+            text: '进阶',
+            collapsed: true,
+            items: [
+              { text: '进阶总览', link: '/python-basics/intermediate/index' },
+              { text: '函数与 lambda', link: '/python-basics/intermediate/functions' },
+              { text: '装饰器', link: '/python-basics/intermediate/decorators' },
+              { text: '迭代器与生成器', link: '/python-basics/intermediate/iterators-generators' },
+              { text: '上下文管理器', link: '/python-basics/intermediate/context-manager' },
+              { text: '模块与 __name__', link: '/python-basics/intermediate/modules' },
+              { text: '错误与异常', link: '/python-basics/intermediate/exceptions' },
+              { text: '面向对象', link: '/python-basics/intermediate/oop' },
+              { text: '类型注解', link: '/python-basics/intermediate/type-hints' },
+              { text: '标准库', link: '/python-basics/intermediate/stdlib' },
+              { text: '并发模型', link: '/python-basics/intermediate/concurrency' }
+            ]
+          },
+          {
+            text: '实战',
+            collapsed: true,
+            items: [
+              { text: '实战总览', link: '/python-basics/practical/index' },
+              { text: 'CLI 工具：目录统计器', link: '/python-basics/practical/cli-tool' }
+            ]
+          },
           { text: '面试', link: '/python-basics/interview' }
         ]
       },
