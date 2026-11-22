@@ -1,0 +1,17 @@
+# Node / VitePress
+node_modules/
+docs/.vitepress/dist/
+docs/.vitepress/cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.env
+Anaconda3-*.sh
+
+# OS / logs
+.DS_Store
+*.log
