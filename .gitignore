@@ -15,3 +15,6 @@ Anaconda3-*.sh
 # OS / logs
 .DS_Store
 *.log
+
+# Local raw material
+raw_document/
