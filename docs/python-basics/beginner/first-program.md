@@ -1,4 +1,4 @@
-**Python 3 教程**
+# Python 3 教程
 
 Python 3 是 Python 的主要版本，不向下兼容 Python 2。
 

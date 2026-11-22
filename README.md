@@ -67,9 +67,11 @@ npm run docs:preview
 
 推送 `main` 后，GitHub Actions 按官网推荐的 Pages 流程自动构建并部署：
 
-- `actions/configure-pages@v4`
-- `actions/upload-pages-artifact@v3`
-- `actions/deploy-pages@v4`
+- `actions/checkout@v7`
+- `actions/setup-node@v6`
+- `actions/configure-pages@v6`
+- `actions/upload-pages-artifact@v5`
+- `actions/deploy-pages@v5`
 
 默认 Pages 地址为 `https://Preseqdatalab.github.io/python-knowledge-base/`。
 

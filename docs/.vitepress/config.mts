@@ -42,6 +42,7 @@ export default defineConfig({
   lang: 'zh-CN',
   base: process.env.BASE_PATH || '/python-knowledge-base/',
   cleanUrls: false,
+  srcExclude: ['_templates/**'],
   lastUpdated: true,
   head: [
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0' }],
@@ -181,6 +182,25 @@ export default defineConfig({
     outline: {
       level: [2, 3],
       label: '本页目录'
+    },
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇'
+    },
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: { dateStyle: 'medium' }
+    },
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
+    notFound: {
+      title: '页面不存在',
+      quote: '你访问的页面不存在或已被移动。',
+      linkText: '返回首页',
+      linkLabel: '返回首页'
     },
     search: {
       provider: 'local',
