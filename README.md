@@ -88,3 +88,5 @@ npm run docs:preview
 ## 内容规范
 
 每章包含：目标、知识点、示例、练习、复习要点。新增章节后更新 `docs/.vitepress/config.mts` 的 `sidebar`；模板见 `docs/_templates/chapter-template.md`。
+
+完整的章节规划、学习阶段、项目阶梯和参考书映射见 [CONTENT_PLAN.md](CONTENT_PLAN.md)。
