@@ -162,5 +162,5 @@ app.include_router(admin_router)
 
 ## 扩展阅读
 
-- 相关章节：[HTTP 基础](http-basics.md)、[第一个 FastAPI 应用](first-app.md)
+- 相关章节：[HTTP 基础](http-basics.md)、[第一个 FastAPI 应用](first-app.md)、[请求体与 Pydantic 模型](request-body.md)
 - 外部文档：[FastAPI Path Parameters](https://fastapi.tiangolo.com/tutorial/path-params/)、[Query Parameters](https://fastapi.tiangolo.com/tutorial/query-params/)

@@ -16,8 +16,9 @@
 | 1 | [HTTP 基础](beginner/http-basics.md) | 看懂请求方法、状态码、请求头和响应体 |
 | 2 | [第一个 FastAPI 应用](beginner/first-app.md) | 从零启动服务，打开 `/docs` 并自动重载 |
 | 3 | [路由与参数](beginner/routing.md) | 用路径参数、查询参数和 `APIRouter` 接住请求 |
+| 4 | [请求体与 Pydantic 模型](beginner/request-body.md) | 用模型接收 JSON，完成字段校验 |
 
-后续会继续补充：请求体与 Pydantic 模型、响应模型、依赖注入、错误处理、中间件、数据库、测试与部署。
+后续会继续补充：响应模型、依赖注入、错误处理、中间件、数据库、测试与部署。
 
 ## 环境准备
 

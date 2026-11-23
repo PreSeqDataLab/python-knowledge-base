@@ -149,7 +149,8 @@ export default defineConfig({
               { text: '入门总览', link: '/web-development/beginner' },
               { text: 'HTTP 基础', link: '/web-development/beginner/http-basics' },
               { text: '第一个 FastAPI 应用', link: '/web-development/beginner/first-app' },
-              { text: '路由与参数', link: '/web-development/beginner/routing' }
+              { text: '路由与参数', link: '/web-development/beginner/routing' },
+              { text: '请求体与 Pydantic 模型', link: '/web-development/beginner/request-body' }
             ]
           },
           { text: '进阶', link: '/web-development/intermediate' },
