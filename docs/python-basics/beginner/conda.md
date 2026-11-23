@@ -1,12 +1,19 @@
 # Python 基础 · 入门 · Anaconda / Miniconda
 
-> 结构参考 [菜鸟教程 Python3 教程](https://www.runoob.com/python3/python3-tutorial.html)，正文为原创整理。
+> 先读 [venv 与 pip](venv.md) 理解虚拟环境的基本概念；本章只讲 conda 特有的环境与包管理。
 
 ## 目标
 
-- 理解 Anaconda 与 Miniconda 的区别。
-- 能用 `conda` 创建、激活、克隆和删除 Python 环境。
-- 能用 `conda` 安装、更新、卸载包，并导出环境配置。
+- 分清 Anaconda 与 Miniconda 的定位。
+- 能安装 Miniconda 并初始化 shell。
+- 能创建、激活、克隆和删除 conda 环境。
+- 能用 `environment.yml` 导出和恢复环境。
+- 知道生物信息常用的 `bioconda` 渠道和商业使用注意事项。
+
+## 前置
+
+- [环境与解释器](environment.md)
+- [venv 与 pip](venv.md)
 
 ## 知识点
 
@@ -17,56 +24,40 @@
 | Anaconda | Python + conda + 大量数据科学包 | 希望开箱即用，做数据分析或机器学习 |
 | Miniconda | Python + conda | 希望轻量安装，按需添加包 |
 
-两者都使用 `conda` 管理环境和包。区别主要在预装包数量和安装体积。
+两者都使用 `conda` 管理环境和包，区别主要在预装包数量和安装体积。Miniconda 更轻，通常更推荐作为起点。
 
-### Linux 安装
+> Anaconda Distribution 和 `defaults` 渠道受 Anaconda 服务条款约束；商业或机构环境先确认许可政策。Miniconda 配合 `conda-forge` / `bioconda` 是常见选择。
 
-交互式安装：
-
-```bash
-curl -O https://repo.anaconda.com/archive/Anaconda3-2025.11-Linux-x86_64.sh
-chmod +x Anaconda3-2025.11-Linux-x86_64.sh
-bash Anaconda3-2025.11-Linux-x86_64.sh
-```
-
-静默安装到指定目录：
+### 安装 Miniconda
 
 ```bash
-# -b 静默安装（无交互），-p 指定安装路径
-sudo bash Anaconda3-2025.11-Linux-x86_64.sh -b -p /opt/anaconda3
+curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh -b -p "$HOME/miniconda3"
+source "$HOME/miniconda3/bin/activate"
+conda init bash
 ```
 
-静默安装不会自动完成 shell 初始化，需要按需执行：
-
-```bash
-source /opt/anaconda3/bin/activate
-conda init --all
-```
-
-如果安装到 `$HOME/anaconda3`，通常不需要 `sudo`，更适合单用户使用。目标目录必须不存在，否则安装器会报错退出。
+- `-b` 静默安装，`-p` 指定安装路径；单用户安装不要加 `sudo`。
+- ARM64 机器把文件名换成 `Miniconda3-latest-Linux-aarch64.sh`。
+- `conda init bash` 会修改 `~/.bashrc`（zsh 用 `conda init zsh`）；重新打开终端或 `source ~/.bashrc` 后 `conda activate` 才可用。
+- 安装 Anaconda 的方式类似，下载地址和版本号以 [官方归档页](https://repo.anaconda.com/archive/) 为准。
 
 ### 环境管理
 
 ```bash
-# 创建环境
-conda create --name myenv
-conda create --name myenv python=3.11
-
-# 激活 / 退出
+conda create -n myenv python=3.11 -y
 conda activate myenv
 conda deactivate
 
-# 查看环境
 conda env list
-conda info --envs
-
-# 克隆环境
-conda create --name myclone --clone myenv
-
-# 删除环境
-conda env remove --name myenv
-conda remove --name myenv --all
+conda create -n myclone --clone myenv
+conda env remove -n myenv -y
 ```
+
+- `conda activate` 提示未初始化时，执行 `conda init bash` 并重开终端。
+- `conda env list`（或 `conda info --envs`）中带 `*` 的是当前环境。
+- 删除环境用 `conda env remove -n myenv`，也可以 `conda remove -n myenv --all`。
+- 环境名不要和项目名混在一起；建议一个项目一个环境。
 
 ### 包管理
 
@@ -80,46 +71,68 @@ conda remove --name myenv --all
 | `conda search package_name` | 搜索仓库中的包 |
 | `conda clean --all -y` | 清理缓存与不再需要的包 |
 
+安装慢时可以用 `mamba` 或 `micromamba`；它们兼容 conda 的包和命令，求解更快。
+
+### 生物信息常用源
+
+生物信息工具大量发布在 `bioconda`，它依赖 `conda-forge`。建议在命令里显式指定渠道：
+
+```bash
+conda create -n bioinfo -c conda-forge -c bioconda \
+  samtools bwa fastqc -y
+```
+
+- 渠道顺序就是优先级，`-c conda-forge` 放在 `-c bioconda` 前面。
+- 不建议随意混用 `defaults`、`conda-forge`、`bioconda`；优先用 `conda-forge` + `bioconda`。
+- 需要固定全局顺序时再配置 `channel_priority strict`，新手先用显式 `-c` 更直观。
+
 ### 导出与恢复
 
 ```bash
-conda env export > environment.yml
+conda env export --from-history > environment.yml
 conda env create -f environment.yml
 ```
 
-恢复时若想去掉平台相关前缀，可使用：
-
-```bash
-conda env export --no-builds > environment.yml
-```
+- `--from-history` 只记录你显式安装的包，跨平台恢复时更稳。
+- `--no-builds` 保留版本但去掉构建字符串，仍然可能受平台限制。
+- `conda list --explicit > spec-file.txt` 可锁定精确构建，但通常不能跨平台使用。
 
 ### 卸载
 
 ```bash
 conda init --reverse --all
-sudo rm -rf /opt/anaconda3
+rm -rf "$HOME/miniconda3"   # 换成实际安装路径
 ```
 
-删除目录前要确认路径正确；`rm -rf` 不可撤销。
+安装到 `/opt` 等系统目录时需要用 `sudo` 删除；执行 `rm -rf` 前先确认路径。
 
-## 示例：创建数据分析环境
+## 示例：创建生物信息环境
 
 ```bash
-conda create -n data python=3.11 numpy pandas matplotlib
-conda activate data
-python -c "import pandas as pd; print(pd.__version__)"
+conda create -n bioinfo -c conda-forge -c bioconda samtools bwa fastqc -y
+conda activate bioinfo
+samtools --version | head -1
 ```
+
+如果求解很慢，先确认渠道顺序正确，或改用 `mamba create ...`。
 
 ## 练习
 
 1. 创建名为 `py311` 的环境，并指定 Python 3.11。
-2. 在环境中安装 `requests`，再用 `conda list` 确认。
-3. 导出环境到 `environment.yml`，删除环境后尝试恢复。
+2. 在环境中安装 `requests`，用 `conda list` 确认。
+3. 用 `--from-history` 导出 `environment.yml`，删除环境后恢复。
+4. 创建一个 `bioinfo` 环境，从 bioconda 安装 `samtools` 并查看版本。
+5. 故意在未初始化的 shell 里执行 `conda activate`，读懂报错并修复。
 
 ## 复习要点
 
-- Anaconda 预装包多，Miniconda 更轻量。
-- `conda create` 创建环境，`conda activate` 激活环境。
-- `conda env list` 查看环境，当前环境会标记 `*`。
-- 导出/恢复环境用 `environment.yml`。
-- 静默安装要理解 `-b` 和 `-p` 的含义。
+- Anaconda 预装多，Miniconda 更轻；入门优先 Miniconda。
+- `conda create` 创建环境，`conda activate` 激活，`conda deactivate` 退出。
+- `conda init` 负责 shell 集成；新终端才能直接使用 `conda activate`。
+- 生物信息工具优先用 `conda-forge` + `bioconda`，注意渠道顺序。
+- 导出环境优先用 `conda env export --from-history`。
+
+## 扩展阅读
+
+- 相关章节：[venv 与 pip](venv.md)、[uv 工具链](uv.md)
+- 外部文档：[conda](https://docs.conda.io/)、[Miniconda](https://docs.anaconda.com/miniconda/)、[Bioconda](https://bioconda.github.io/)
