@@ -21,6 +21,8 @@ source .venv/bin/activate        # macOS / Linux
 pip install fastapi uvicorn
 ```
 
+虚拟环境的创建、激活与依赖管理见 [venv 与 pip](../../python-basics/beginner/venv.md)。
+
 使用 uv：
 
 ```bash

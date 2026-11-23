@@ -96,6 +96,8 @@ export default defineConfig({
               { text: '入门总览', link: '/python-basics/beginner/index' },
               { text: '开始', link: '/python-basics/beginner/first-program' },
               { text: '环境与解释器', link: '/python-basics/beginner/environment' },
+              { text: 'venv 与 pip', link: '/python-basics/beginner/venv' },
+              { text: 'VS Code', link: '/python-basics/beginner/vscode' },
               { text: 'Anaconda / Miniconda', link: '/python-basics/beginner/conda' },
               { text: 'uv 工具链', link: '/python-basics/beginner/uv' },
               { text: 'Jupyter Notebook', link: '/python-basics/beginner/jupyter' },

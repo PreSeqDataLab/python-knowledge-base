@@ -1,7 +1,5 @@
 # Python 基础 · 入门 · 环境与解释器
 
-> 结构参考 [菜鸟教程 Python3 教程](https://www.runoob.com/python3/python3-tutorial.html)，正文为原创整理。
-
 ## 目标
 
 - 能在 Linux 上安装并验证 Python 3。
@@ -103,18 +101,11 @@ export PATH="$PATH:/usr/local/bin/python"
 
 环境管理工具与交互工具已拆成独立章节：
 
+- [venv 与 pip](venv.md)：标准库虚拟环境、依赖安装与导出
+- [VS Code](vscode.md)：编辑器、调试、远程开发与常用扩展
 - [Anaconda / Miniconda](conda.md)：数据科学发行版与 conda 环境管理
 - [uv 工具链](uv.md)：Python 版本、虚拟环境与依赖的统一管理
 - [Jupyter Notebook](jupyter.md)：交互式计算与探索式开发
-
-## 示例：确认当前环境
-
-```bash
-python3 --version
-python3 -c "import sys; print(sys.executable)"
-```
-
-第二条命令输出当前解释器的绝对路径，可用来确认终端与 IDE 使用的是否是同一个 Python。
 
 ## 练习
 

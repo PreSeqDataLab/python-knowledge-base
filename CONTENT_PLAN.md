@@ -282,7 +282,7 @@ docs/
 | --- | --- |
 | `python-basics/beginner/*` | 保留；把 10–20 行的 stub 补到 80 行以上；统一模板 |
 | `python-basics/intermediate/*` | 保留；补 FastAPI/Web 相关例子；与 PY1–PY7 互相链接 |
-| `python-basics/beginner/environment.md` / `conda.md` / `uv.md` | 划边界：解释器 vs conda vs uv，避免重复 venv/pip 基础 |
+| `python-basics/beginner/environment.md` / `venv.md` / `conda.md` / `uv.md` | 环境线顺序：environment → venv 与 pip → VS Code → conda → uv → Jupyter；venv 是基线，conda/uv 只讲差异 |
 | `web-development/beginner/*` | 保留已发布 3 章，继续 W4–W8 |
 | `web-development/intermediate.md` | 拆成 W9–W17 后删除单页 |
 | `web-development/practical.md` | 改为 W-P1–P3 项目入口 |

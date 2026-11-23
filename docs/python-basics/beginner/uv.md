@@ -2,6 +2,8 @@
 
 > 结构参考 [菜鸟教程 Python3 教程](https://www.runoob.com/python3/python3-tutorial.html)，正文为原创整理。
 
+> 先读 [venv 与 pip](venv.md) 理解虚拟环境；本章只讲 uv 特有的工作流。
+
 ## 目标
 
 - 理解 `uv` 在 Python 工具链中的定位。

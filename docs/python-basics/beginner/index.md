@@ -3,6 +3,8 @@
 ## 目标
 
 - 能确认并管理 Python 3 环境，理解脚本与解释器的关系。
+- 能用 venv 隔离项目依赖，并用 pip 导出 `requirements.txt`。
+- 能在 VS Code 中选择解释器、运行脚本并调试。
 - 能使用变量、运算符、字符串和四类常用容器。
 - 能用条件、循环和推导式写出解决小问题的脚本。
 
@@ -10,6 +12,8 @@
 
 - [开始](first-program.md)
 - [环境与解释器](environment.md)
+- [venv 与 pip](venv.md)
+- [VS Code](vscode.md)
 - [Anaconda / Miniconda](conda.md)
 - [uv 工具链](uv.md)
 - [Jupyter Notebook](jupyter.md)
