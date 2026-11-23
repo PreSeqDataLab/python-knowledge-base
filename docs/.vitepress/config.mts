@@ -142,7 +142,16 @@ export default defineConfig({
         collapsed: false,
         items: [
           { text: '主线总览', link: '/web-development/index' },
-          { text: '入门', link: '/web-development/beginner' },
+          {
+            text: '入门',
+            collapsed: true,
+            items: [
+              { text: '入门总览', link: '/web-development/beginner' },
+              { text: 'HTTP 基础', link: '/web-development/beginner/http-basics' },
+              { text: '第一个 FastAPI 应用', link: '/web-development/beginner/first-app' },
+              { text: '路由与参数', link: '/web-development/beginner/routing' }
+            ]
+          },
           { text: '进阶', link: '/web-development/intermediate' },
           { text: '实战', link: '/web-development/practical' },
           { text: '面试', link: '/web-development/interview' }

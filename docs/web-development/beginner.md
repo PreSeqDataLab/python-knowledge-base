@@ -1,62 +1,68 @@
 # Web 开发 · 入门
 
+> 从一次 HTTP 请求开始，跑起第一个 FastAPI 服务，并能用路由和参数接住请求。
+
 ## 目标
 
-- 理解一次 HTTP 请求包含什么。
-- 能启动 FastAPI 服务并访问交互文档。
+- 说清一次 HTTP 请求和响应分别由什么组成。
+- 独立创建环境、安装依赖、启动 FastAPI 服务。
+- 用路径参数和查询参数写出可校验的接口。
+- 能定位 404、422、端口占用等入门问题。
 
-## 知识点
+## 章节
 
-### HTTP 请求与响应
+| 顺序 | 章节 | 解决什么问题 |
+| --- | --- | --- |
+| 1 | [HTTP 基础](beginner/http-basics.md) | 看懂请求方法、状态码、请求头和响应体 |
+| 2 | [第一个 FastAPI 应用](beginner/first-app.md) | 从零启动服务，打开 `/docs` 并自动重载 |
+| 3 | [路由与参数](beginner/routing.md) | 用路径参数、查询参数和 `APIRouter` 接住请求 |
 
-```text
-请求：方法 + URL + 请求头 + 请求体
-响应：状态码 + 响应头 + 响应体
-```
+后续会继续补充：请求体与 Pydantic 模型、响应模型、依赖注入、错误处理、中间件、数据库、测试与部署。
 
-常见方法：`GET` 查询、`POST` 创建、`PUT` 全量更新、`PATCH` 局部更新、`DELETE` 删除。
+## 环境准备
 
-### 第一个应用
-
-```python
-from fastapi import FastAPI
-
-app = FastAPI()
-
-@app.get("/")
-def root():
-    return {"message": "Hello World"}
-```
-
-启动：
+需要 Python 3.10+（示例使用 `str | None` 写法）。
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install fastapi uvicorn
+```
+
+使用 uv 也可以：
+
+```bash
+uv venv
+source .venv/bin/activate
+uv pip install fastapi uvicorn
+```
+
+本仓库根目录已经包含示例服务和依赖文件，可以直接运行：
+
+```bash
+pip install -r requirements.txt
 uvicorn main:app --reload --port 8001
 ```
 
-访问：
-- 业务接口：`http://127.0.0.1:8001/`
-- Swagger 文档：`http://127.0.0.1:8001/docs`
-- OpenAPI JSON：`http://127.0.0.1:8001/openapi.json`
+## 学习方式
 
-## 示例：路径参数与查询参数
+1. 先照着章节把示例跑起来，再用 `/docs` 或 `curl` 改参数观察响应。
+2. 每章至少制造一次错误：非法路径参数、缺少必填查询参数、错误的方法。
+3. 遇到 `422` 时先看响应体里的 `loc`、`msg`、`type`，再回去检查函数签名。
 
-```python
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str | None = None):
-    return {"item_id": item_id, "q": q}
-```
+## 完成标准
 
-访问 `/items/42?q=demo`，FastAPI 自动完成类型转换与校验。
-
-## 练习
-
-1. 给应用增加 `GET /health`，返回 `{"status": "ok"}`。
-2. 用浏览器打开 `/docs`，执行一次带查询参数的请求。
-3. 故意传 `item_id=abc`，观察 `422` 响应内容。
+- 不看资料能写出根路由、带路径参数的接口和带默认值的查询参数。
+- 能解释 `200`、`201`、`204`、`400`、`401`、`403`、`404`、`422`、`500` 的使用场景。
+- 能根据启动日志、`/docs` 和响应体定位常见问题。
 
 ## 复习要点
 
+- FastAPI 的参数来源由函数签名决定：路径里的同名变量是路径参数，其余默认是查询参数。
 - `uvicorn main:app` 中 `main` 是模块名，`app` 是 FastAPI 实例名。
-- `--reload` 仅用于开发。
-- 类型注解既是文档也是运行时校验依据。
+- 类型注解同时承担三件事：编辑器提示、文档生成、运行时校验。
+
+## 扩展阅读
+
+- 相关章节：[Web 开发 · 进阶](intermediate.md)、[HTTP 基础](beginner/http-basics.md)
+- 外部文档：[FastAPI Tutorial](https://fastapi.tiangolo.com/tutorial/)
