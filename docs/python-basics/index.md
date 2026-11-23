@@ -2,8 +2,6 @@
 
 语言本身、运行环境与工程化能力是所有其他主线的底座。
 
-> 章节结构参考 [菜鸟教程 Python3 教程](https://www.runoob.com/python3/python3-tutorial.html)，正文为本项目原创整理，不逐字复制原站内容。
-
 | 层级 | 章节 | 完成标准 |
 | --- | --- | --- |
 | 入门 | [beginner/index.md](beginner/index.md) | 能安装环境、写脚本、处理基础数据与容器 |
